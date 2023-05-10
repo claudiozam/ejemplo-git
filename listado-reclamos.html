@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/general.css" rel="stylesheet">
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="img/logo.jpeg" class="logo-principal">
+                Ejemplo curso web
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" href="inicio.html">Inicio</a>
+                    <a class="nav-link" href="nuevo-reclamo.html">Nuevo reclamo</a>
+                    <a class="nav-link" href="listado-reclamos.html">Listado reclamos</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Listado de reclamo</h1>
+
+        <table class="table table-dark table-striped table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Reclamos</th>
+              <th>Nombre y apellido</th>
+              <th>Email</th>
+              <th>Fecha</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>No tengo internet</td>
+              <td>Juan Perez</td>
+              <td>juanp@hotmail.com</td>
+              <td>12/12/2023</td>
+              <td><a href="#" class="btn btn-primary btn-ver-inline">Ver</a>&nbsp;<a href="#" class="btn btn-info">Editar</a>&nbsp;<a href="#" class="btn btn-danger btn-borrar">Borrar</a></td>
+            </tr>
+            <tr style="display: none;">
+              <td colspan="6">
+
+                <table class="table table-light">
+                  <tr>
+                    <td>Ejemplo1</td>
+                    <td>Ejemplo2</td>
+                    <td>Ejemplo3</td>
+                    <td>Ejemplo4</td>
+                    <td>Ejemplo5</td>
+                    <td>Ejemplo6</td>
+                    <td>Ejemplo7</td>
+                    <td>Ejemplo8</td>
+                    <td>Ejemplo9</td>
+                    <td>Ejemplo10</td>
+                  </tr>
+                  <tr>
+                    <td>Ejemplo1</td>
+                    <td>Ejemplo2</td>
+                    <td>Ejemplo3</td>
+                    <td>Ejemplo4</td>
+                    <td>Ejemplo5</td>
+                    <td>Ejemplo6</td>
+                    <td>Ejemplo7</td>
+                    <td>Ejemplo8</td>
+                    <td>Ejemplo9</td>
+                    <td>Ejemplo10</td>
+                  </tr>
+                </table>
+
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>No tengo internet</td>
+              <td>Maria Lopez</td>
+              <td>mlopez@gmail.com</td>
+              <td>12/12/2023</td>
+              <td><a href="#" class="btn btn-primary btn-ver-modal">Ver</a>&nbsp;<a href="#" class="btn btn-info">Editar</a>&nbsp;<a href="#" class="btn btn-danger btn-borrar">Borrar</a></td>
+            </tr>
+          </tbody>
+        </table>
+     
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalDatosReclamo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Ejemplo de contenido modal.....
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script src="js/jquery-3.1.1.js"></script>
+    <script src="js/jquery.validate.js"></script>
+    <script src="js/additional-methods.js"></script>
+    <script src="js/messages_es.js"></script>
+    <script src="js/bootstrap.bundle.js"></script>
+    <script src="js/bootbox.all.js"></script>
+
+    <script>
+      // document es la variable que representa a todos los elementos HTML de la pagina document = DOM
+      // Este metodo "ready" se ejecuta cuando se termina de cargar todo el HTML de la pagina y el DOM esta listo para trabajar!!!
+      // Sin este ready no puedo hacer nada porque la pagina no esta lista para trabajar!!!! 
+      $(document).ready(function() { 
+        // #formularioDeReclamo es el id que tiene el tag <form id="formularioDeReclamo" action="altadereclamo.html" method="get">
+        $('.btn-borrar').on('click', function(event) {
+          event.preventDefault();
+          //var $soyElTr = $(this).parent().parent(); //Recupero el padre del padre que es el Tr de la tabla....
+          var $soyElTr = $(this).closest('tr'); //Esto es lo mismo que hacer $(this).parent().parent() pero directamente al tipo de elemento que quiero
+          
+
+          bootbox.confirm('Borramos el reclamo', function(result) {
+            if(result == true) {
+              console.log('me suena que quiere borrar el reclamo.....');
+              $soyElTr.remove(); //eliminamos el html completo del TR!!!!!!!
+            }
+          });
+
+        });
+        
+        
+        $('.btn-ver-inline').on('click', function(event) {
+          event.preventDefault();
+          var $soyElTr = $(this).closest('tr'); //Esto es lo mismo que hacer $(this).parent().parent() pero directamente al tipo de elemento que quiero
+          var $proximoTr = $soyElTr.next();
+          //$proximoTr.show();
+          //$proximoTr.css('display', 'inline');
+          $proximoTr.toggle('slow');
+
+        });
+
+        $('.btn-ver-modal').on('click', function(event) {
+          event.preventDefault();
+          var miModal  = new bootstrap.Modal('#modalDatosReclamo');
+          miModal.show();
+        });
+
+
+      });
+
+    </script>
+  </body>
+</html>
