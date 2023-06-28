@@ -13,7 +13,8 @@ public class CategoriaProducto {
 	private Long id;
 	private String nombre;
 	private String descripcion;
-	
+	private String notas;
+
 	@OneToOne(mappedBy = "categoriaProducto")
 	private Producto producto;
 	
