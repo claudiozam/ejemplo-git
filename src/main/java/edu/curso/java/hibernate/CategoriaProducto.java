@@ -12,6 +12,7 @@ public class CategoriaProducto {
 	@GeneratedValue
 	private Long id;
 	private String nombre;
+	private String descripcion;
 	
 	@OneToOne(mappedBy = "categoriaProducto")
 	private Producto producto;
