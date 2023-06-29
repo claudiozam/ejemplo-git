@@ -14,6 +14,7 @@ public class CategoriaProducto {
 	private String nombre;
 	private String descripcion;
 	private String notas;
+	private Integer numeroDeCategoriaExtra;
 
 	@OneToOne(mappedBy = "categoriaProducto")
 	private Producto producto;
